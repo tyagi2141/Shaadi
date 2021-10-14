@@ -66,6 +66,8 @@ class HomeAdapter(var eventsList: List<Results>, private val onTabCallback: OnTa
                         context.getDrawable(R.drawable.ic_baseline_cancel_24)
                     itemBinding.btnAcceptId.background = context.getDrawable(R.drawable.ic_baseline_check_circle_24)
                     itemBinding.containeeId.setBackgroundColor(context.resources.getColor(R.color.white))
+                    itemBinding.tvStatusId.text= ""
+
                 }
             }
 
