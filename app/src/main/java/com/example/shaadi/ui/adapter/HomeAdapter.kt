@@ -43,25 +43,30 @@ class HomeAdapter(var eventsList: List<Results>, private val onTabCallback: OnTa
             itemBinding.tvUserDetailsId.text =
                 "${result.dob?.age} , ${result.location?.city} , ${result.location?.country}"
 
-            if (result.statusFlag == CommonConstant.REJECT) {
-                itemBinding.btnDeclineId.background =
-                    context.getDrawable(R.drawable.ic_disable_cancel)
-                itemBinding.btnAcceptId.background =
-                    context.getDrawable(R.drawable.ic_baseline_check_circle_24)
-                itemBinding.containeeId.setBackgroundColor(context.resources.getColor(R.color.red))
+            when (result.statusFlag) {
+                CommonConstant.REJECT -> {
+                    itemBinding.btnDeclineId.background = context.getDrawable(R.drawable.ic_disable_cancel)
+                    itemBinding.btnAcceptId.background = context.getDrawable(R.drawable.ic_baseline_check_circle_24)
+                    itemBinding.containeeId.setBackgroundColor(context.resources.getColor(R.color.lightred))
+                    itemBinding.tvStatusId.text= "Member ${context.resources.getString(R.string.declined)}"
+                    itemBinding.tvStatusId.setTextColor(context.resources.getColor(R.color.red))
 
-            } else if (result.statusFlag == CommonConstant.APPROVED) {
-                itemBinding.btnDeclineId.background =
-                    context.getDrawable(R.drawable.ic_baseline_cancel_24)
-                itemBinding.btnAcceptId.background =
-                    context.getDrawable(R.drawable.ic_disable_check_circle)
-                itemBinding.containeeId.setBackgroundColor(context.resources.getColor(R.color.green))
+                }
+                CommonConstant.APPROVED -> {
+                    itemBinding.btnDeclineId.background = context.getDrawable(R.drawable.ic_baseline_cancel_24)
+                    itemBinding.btnAcceptId.background = context.getDrawable(R.drawable.ic_disable_check_circle)
+                    itemBinding.containeeId.setBackgroundColor(context.resources.getColor(R.color.lightgreen))
+                    itemBinding.tvStatusId.text= "Member ${context.resources.getString(R.string.accepted)}"
+                    itemBinding.tvStatusId.setTextColor(context.resources.getColor(R.color.green))
 
-            } else {
-                itemBinding.btnDeclineId.background =
-                    context.getDrawable(R.drawable.ic_baseline_cancel_24)
-                itemBinding.btnAcceptId.background = context.getDrawable(R.drawable.ic_baseline_check_circle_24)
-                itemBinding.containeeId.setBackgroundColor(context.resources.getColor(R.color.white))
+
+                }
+                else -> {
+                    itemBinding.btnDeclineId.background =
+                        context.getDrawable(R.drawable.ic_baseline_cancel_24)
+                    itemBinding.btnAcceptId.background = context.getDrawable(R.drawable.ic_baseline_check_circle_24)
+                    itemBinding.containeeId.setBackgroundColor(context.resources.getColor(R.color.white))
+                }
             }
 
 
